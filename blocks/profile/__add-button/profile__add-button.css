@@ -5,10 +5,16 @@
   background-image: url('../../../images/profile/plus.svg');
   background-repeat: no-repeat;
   background-position: center center;
-  background-color: #000;
+  background-color: transparent;
   border: 2px solid #fff;
   grid-area: add-button;
   place-self: center center;
+  transition: .6s ease;
+}
+
+.profile__add-button:hover {
+  opacity: .6;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 651px) {

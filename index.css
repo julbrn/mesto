@@ -17,39 +17,24 @@
 @import url(./blocks/elements/__like/elements__like.css);
 @import url(./blocks/elements/__photo/elements__photo.css);
 @import url(./blocks/content/content.css);
-@import url();
-@import url();
-@import url();
-@import url();
-@import url();
-@import url();
+@import url(./blocks/footer/footer.css);
+@import url(./blocks/footer/__copyright/footer__copyright.css);
+@import url(./blocks/popup/popup.css);
+@import url(./blocks/popup/__container/popup__container.css);
+@import url(./blocks/popup/__title/popup__title.css);
+@import url(./blocks/popup/__close/popup__close.css);
+@import url(./blocks/popup/__form/popup__form.css);
+@import url(./blocks/popup/__input/popup__input.css);
+@import url(./blocks/popup/__save/popup__save.css);
+@import url(./blocks/popup/__input/_type/popup__input_type_personal-info.css);
 @import url();
 @import url();
 @import url();
 
 
-.footer {
-  width: 100%;
-  max-width: 880px;
-  margin: 0 auto;
-  box-sizing: border-box;
-}
-
-.footer__copyright {
-  color: #545454;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.22;
-  padding: 0;
-  margin: 66px 0 0;
-
-}
 
 
-@media screen and (max-width: 950px) {
-  .footer {
-    font-size: 14px;
-    line-height: 1.21;
-    padding: 48px 19px 0;
-  }
-}
+
+
+
+
