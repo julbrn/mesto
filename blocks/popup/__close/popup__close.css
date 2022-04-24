@@ -9,12 +9,12 @@
   height: 32px;
   background-color: transparent;
   border: none;
-  transition: .6s ease;
 }
 
 .popup__close:hover {
   opacity: .6;
   cursor: pointer;
+  transition: opacity .7s ease;
 }
 
 @media screen and (max-width: 580px) {

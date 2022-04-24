@@ -20,7 +20,8 @@
   .profile__title {
     font-size: 27px;
     line-height: 1.21;
-    place-self: center end;
+    justify-self: end;
+    align-self: center;
     margin-left: 0;
   }
 }

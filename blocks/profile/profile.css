@@ -9,6 +9,7 @@
         "avatar subtitle . . add-button";
   column-gap: 18px;
   padding: 40px 0 50px;
+  box-sizing: border-box;
 }
 
 @media screen and (max-width: 650px) {
@@ -21,7 +22,6 @@
     "subtitle subtitle"
     "add-button add-button";
     column-gap: 0;
-    justify-items: center;
 
   }
 }

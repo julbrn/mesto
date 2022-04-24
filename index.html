@@ -8,19 +8,13 @@
 </head>
 <body class="page">
   <header class="header">
-    <a href="/" class="header__logo">
-      <img class="header__logo-img" src="./images/header/logo.svg" alt="Mesto Russia logo">
-    </a>
+    <a href="#" class="header__logo" target="_blank"><img class="header__logo-img" src="./images/header/logo.svg" alt="Mesto Russia logo"></a>
   </header>
     <main class="content">
     <section class="profile">
-      <img class="profile__avatar" src="./images/profile/image.jpg" alt="Avatar">
-      <h1 class="profile__title">
-      Жак-Ив Кусто
-      </h1>
-      <p class="profile__subtitle">
-      Исследователь океана
-      </p>
+      <img class="profile__avatar" src="./images/profile/willys_wonderland.jpg" alt="Avatar">
+      <h1 class="profile__title">Николас Кейдж</h1>
+      <p class="profile__subtitle">Актёр, продюссер, режиссёр</p>
       <button class="profile__edit-button" type="button">
       </button>
       <button class="profile__add-button" type="button">
@@ -29,34 +23,40 @@
    <section class="elements">
       <ul class="elements__cards">
         <li class="elements__card">
-          <img class="elements__photo" src="./images/elements/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск">
+          <img class="elements__photo" src="./images/elements/Karachaevsk.jpg" alt="Карачаевск">
           <h2 class="elements__card-title">Карачаевск</h2>
-          <button type="button" class="elements__like"></button>
+          <button type="button" class="elements__like">
+          </button>
         </li>
         <li class="elements__card">
-          <img class="elements__photo" src="./images/elements/kirill-pershin-1404681-unsplash2.png" alt="Гора Эльбрус">
+          <img class="elements__photo" src="./images/elements/Bermamyt_Plateau1.jpg" alt="Плато Бермамыт">
+          <h2 class="elements__card-title">Бермамыт</h2>
+          <button type="button" class="elements__like">
+          </button>
+        </li>
+        <li class="elements__card">
+          <img class="elements__photo" src="./images/elements/Elbrus.jpg" alt="Гора Эльбрус">
           <h2 class="elements__card-title">Гора Эльбрус</h2>
-          <button type="button" class="elements__like"></button>
+          <button type="button" class="elements__like">
+          </button>
         </li>
         <li class="elements__card">
-          <img class="elements__photo" src="./images/elements/kirill-pershin-1556355-unsplash3.png" alt="Домбай">
-          <h2 class="elements__card-title">Домбай</h2>
-          <button type="button" class="elements__like"></button>
-        </li>
-        <li class="elements__card">
-          <img class="elements__photo" src="./images/elements/Bermamyt_Plateau.jpg" alt="Плато Бермамыт">
-          <h2 class="elements__card-title">Плато Бермамыт</h2>
-          <button type="button" class="elements__like"></button>
-        </li>
-        <li class="elements__card">
-          <img class="elements__photo" src="./images/elements/Mount_Mashuk.jpg" alt="Гора Машук">
+          <img class="elements__photo" src="./images/elements/Mount_Mashuk1.jpg" alt="Гора Машук">
           <h2 class="elements__card-title">Гора Машук</h2>
-          <button type="button" class="elements__like"></button>
+          <button type="button" class="elements__like">
+          </button>
         </li>
         <li class="elements__card">
-          <img class="elements__photo" src="./images/elements/Chuchkhur_waterfall.jpg" alt="Чучхурский водопад">
+          <img class="elements__photo" src="./images/elements/Chuchkhur_waterfall1.jpg" alt="Чучхурский водопад">
           <h2 class="elements__card-title">Ущелье Птыш</h2>
-          <button type="button" class="elements__like"></button>
+          <button type="button" class="elements__like">
+          </button>
+        </li>
+        <li class="elements__card">
+          <img class="elements__photo" src="./images/elements/Dombai.jpg" alt="Домбай">
+          <h2 class="elements__card-title">Домбай</h2>
+          <button type="button" class="elements__like">
+          </button>
         </li>
       </ul>
     </section>
@@ -71,14 +71,13 @@
       <button type="button" class="popup__close">
       </button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form">
-        <input type="text" name="name" placeholder="Жак-Ив Кусто" class="popup__input popup__input_type_name">
-        <input type="text" name="personal-info" placeholder="Исследователь океана" class="popup__input popup__input_type_personal-info">
-        <button type="submit" class="popup__save">Сохранить</button>
+      <form class="popup__form" name="popupForm">
+        <input type="text" name="profileName" class="popup__input popup__input_type_name">
+        <input type="text" name="profilePersonalInfo" class="popup__input popup__input_type_personal-info">
+        <button type="sumbit" class="popup__save">Сохранить</button>
       </form>
-
     </div>
   </div>
-<script src="./js/script.js"></script>
+  <script src="./js/script.js"></script>
 </body>
 </html>
