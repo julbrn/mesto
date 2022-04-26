@@ -13,4 +13,16 @@
   overflow: hidden;
   box-sizing: border-box;
   padding: 0;
+  margin-top: 33px;
+}
+
+
+.popup__input:first-child {
+   margin-top: 0;
+}
+
+@media screen and (max-width: 580px) {
+  .popup__input {
+    margin-top: 30;
+  }
 }

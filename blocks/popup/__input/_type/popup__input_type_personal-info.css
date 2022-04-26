@@ -1,9 +1,1 @@
-.popup__input_type_personal-info {
-  margin-top: 33px;
-}
 
-@media screen and (max-width: 580px) {
-  .popup__input_type_personal-info {
-    margin-top: 30;
-  }
-}

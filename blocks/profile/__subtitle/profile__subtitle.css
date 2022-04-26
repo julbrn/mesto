@@ -9,21 +9,24 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-
+  max-width: 380px;
 }
 
-@media screen and (min-width: 351px) and (max-width: 1279px) {
+@media screen and (min-width: 652px) and (max-width: 1279px) {
   .profile__subtitle {
-    font-size: calc(14px + (18 - 14) * ((100vw - 351px) / (1279 - 351)));
+    font-size: calc(14px + (18 - 14) * ((100vw - 652px) / (1279 - 652)));
+    max-width: calc(220px + (370 - 220) * ((100vw - 652px) / (1279 - 652)));
   }
 }
+
 
 @media screen and (max-width: 651px) {
   .profile__subtitle {
     font-size: 14px;
     line-height: 1.21;
     margin-left: 0;
-    margin: 14px 0 0 0;
+    margin-top: 14px;
     justify-self: center;
+    max-width: 210px;
   }
 }
