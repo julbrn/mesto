@@ -13,18 +13,13 @@
 
 @media screen and (max-width: 953px) {
   .elements__cards {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 282px);
   }
 }
 
 @media screen and (max-width: 617px) {
   .elements__cards {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media screen and (max-width: 321px) {
-  .elements__cards {
     grid-template-columns: 282px;
   }
 }
+
