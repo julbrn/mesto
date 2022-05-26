@@ -6,8 +6,7 @@
   font-weight: 900;
   line-height: 1.2;
   text-overflow: ellipsis;
-  white-space: nowrap;
   overflow: hidden;
+  white-space: nowrap;
   max-width: 200px;
-  height: 23px;
 }

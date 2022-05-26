@@ -3,9 +3,10 @@
   background-color: #fff;
   border-radius: 10px;
   width: 430px;
+  height: 330px;
   min-height: 330px;
   z-index: 5;
-  padding: 34px 37px 37px 36px;
+  padding: 34px 36px 37px 36px;
   box-sizing: border-box;
 }
 
