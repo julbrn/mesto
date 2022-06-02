@@ -6,3 +6,6 @@
   object-fit: cover;
 }
 
+.card__photo:hover {
+  cursor: pointer;
+}

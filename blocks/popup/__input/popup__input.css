@@ -5,24 +5,15 @@
   color: #000;
   border: none;
   outline: none;
-  border-bottom: 1px solid rgba(0,0,0,.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   width: 100%;
-  height: 27px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   box-sizing: border-box;
-  padding: 0;
-  margin-top: 33px;
+  padding: 1px 0 13px;
 }
 
-
-.popup__input:first-child {
-   margin-top: 0;
-}
-
-@media screen and (max-width: 580px) {
-  .popup__input {
-    margin-top: 30;
-  }
+.popup__input:focus {
+  outline: 1px solid #b5b6b7;
 }

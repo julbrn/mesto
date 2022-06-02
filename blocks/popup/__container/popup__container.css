@@ -6,14 +6,14 @@
   height: 330px;
   min-height: 330px;
   z-index: 5;
-  padding: 34px 36px 37px 36px;
+  padding: 34px 36px 36px 36px;
   box-sizing: border-box;
 }
 
 @media screen and (max-width: 580px) {
   .popup__container {
     width: 282px;
-    min-height: 322px;
+    height: 322px;
     padding: 25px 22px;
   }
 }
