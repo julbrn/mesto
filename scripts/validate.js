@@ -1,12 +1,3 @@
-const validationSettings = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__submit-button",
-  inactiveButtonClass: ".popup__submit-button_disabled",
-  inputErrorClass: ".popup__input-error",
-  errorClass: ".popup__input-error_active",
-};
-
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add("popup__input_type_error");
@@ -65,4 +56,11 @@ const enableValidation = () => {
   });
 };
 
-enableValidation(validationSettings);
+enableValidation({
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__submit-button",
+  inactiveButtonClass: "popup__submit-button_disabled",
+  inputErrorClass: "popup__input-error",
+  errorClass: ".popup__input-error_active",
+});
