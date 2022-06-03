@@ -33,17 +33,19 @@ const cardTemplate = document.querySelector(".card-template").content;
 const setDefaultErrorState = (formElement) => {
   const inputList = Array.from(formElement.querySelectorAll(".popup__input"));
   inputList.forEach((inputElement) => {
-    if (inputElement.classList.contains("popup__input_type_error")) {
-      hideInputError(formElement, inputElement);
-    }
+    inputElement.classList.remove("popup__input_type_error");
+    const error = formElement.querySelector(`.${inputElement.id}-error`);
+    error.classList.remove("popup__input-error_active");
   });
 };
 
 //Функции открытия попапов
 function openPopup(popupObject) {
-  setDefaultErrorState(popupObject);
   popupObject.classList.add("popup_opened");
   document.addEventListener("keydown", handleEscPress);
+  setDefaultErrorState(popupObject);
+  const submitButton = popupObject.querySelector(".popup__submit-button");
+  submitButton.classList.add("popup__submit-button_disabled");
 }
 
 //Функции закрытия попапов
