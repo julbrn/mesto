@@ -26,35 +26,19 @@ const newCardLink = newCardPopup.querySelector(".popup__input_type_url");
 const newCardCreateButton = document.querySelector(".profile__add-button");
 const newCardCloseButton = newCardPopup.querySelector(".popup__close");
 const newCardSubmitForm = newCardPopup.querySelector(".popup__form");
-
+const newCardSubmitButton = newCardPopup.querySelector(".popup__submit-button");
 const cardTemplate = document.querySelector(".card-template").content;
-
-//Стирание сообщений об ошибках при открытии попапов
-const setDefaultErrorState = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll(".popup__input"));
-  inputList.forEach((inputElement) => {
-    inputElement.classList.remove("popup__input_type_error");
-    const error = formElement.querySelector(`.${inputElement.id}-error`);
-    error.classList.remove("popup__input-error_active");
-  });
-};
 
 //Функции открытия попапов
 function openPopup(popupObject) {
   popupObject.classList.add("popup_opened");
   document.addEventListener("keydown", handleEscPress);
-  setDefaultErrorState(popupObject);
-  const submitButton = popupObject.querySelector(".popup__submit-button");
-  submitButton.classList.add("popup__submit-button_disabled");
 }
 
 //Функции закрытия попапов
 function closePopup(popupObject) {
   popupObject.classList.remove("popup_opened");
   document.removeEventListener("keydown", handleEscPress);
-  if (popupObject.classList.contains("popup_type_add-card")) {
-    newCardSubmitForm.reset();
-  }
 }
 
 //Передача данных из профиля в поля попапа
@@ -105,18 +89,18 @@ const createCard = (cardData) => {
   return card;
 };
 
-const renderCard = (obj) => {
-  cardListWrapper.append(obj);
+const renderCard = (card) => {
+  cardListWrapper.append(card);
 };
 
-const addCard = (obj) => {
-  cardListWrapper.prepend(obj);
+const addCard = (card) => {
+  cardListWrapper.prepend(card);
 };
 
 //Функция увеличения фото карточки
-const photoZoomHandler = (obj) => {
-  zoomedImage.src = obj.link;
-  imageCaption.textContent = obj.name;
+const photoZoomHandler = (image) => {
+  zoomedImage.src = image.link;
+  imageCaption.textContent = image.name;
   openPopup(imageZoomPopup);
 };
 
@@ -135,6 +119,9 @@ const newCardSubmitFormHandler = (evt) => {
   });
   addCard(newCard);
   closePopup(newCardPopup);
+  newCardSubmitForm.reset();
+  enableValidation(validationConfig);
+  newCardSubmitButton.classList.remove("popup__submit-button_active");
 };
 
 newCardCreateButton.addEventListener("click", () => openPopup(newCardPopup));

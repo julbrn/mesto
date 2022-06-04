@@ -2,7 +2,7 @@ const validationConfig = {
   formSelector: "popup__form",
   inputSelector: "popup__input",
   submitButtonSelector: "popup__submit-button",
-  inactiveButtonClass: "popup__submit-button_disabled",
+  activeButtonClass: "popup__submit-button_active",
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__input-error_active",
 };
@@ -59,12 +59,12 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
-const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
+const toggleButtonState = (inputList, buttonElement, activeButtonClass) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(inactiveButtonClass);
+    buttonElement.classList.remove(activeButtonClass);
     buttonElement.disabled = true;
   } else {
-    buttonElement.classList.remove(inactiveButtonClass);
+    buttonElement.classList.add(activeButtonClass);
     buttonElement.disabled = false;
   }
 };
@@ -75,7 +75,7 @@ const setEventListeners = (formElement, someConfig) => {
     submitButtonSelector,
     inputErrorClass,
     errorClass,
-    inactiveButtonClass,
+    activeButtonClass,
   } = someConfig;
   const inputList = Array.from(
     formElement.querySelectorAll(`.${inputSelector}`)
@@ -90,7 +90,7 @@ const setEventListeners = (formElement, someConfig) => {
         inputErrorClass,
         errorClass
       );
-      toggleButtonState(inputList, buttonElement, inactiveButtonClass);
+      toggleButtonState(inputList, buttonElement, activeButtonClass);
     });
   });
 };
