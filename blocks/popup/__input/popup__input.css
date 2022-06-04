@@ -12,6 +12,7 @@
   overflow: hidden;
   box-sizing: border-box;
   padding: 1px 0 13px;
+  margin: 0;
 }
 
 .popup__input:focus {
