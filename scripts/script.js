@@ -43,9 +43,9 @@ function closePopup(popupObject) {
 
 //Передача данных из профиля в поля попапа
 profileEditButton.addEventListener("click", function () {
-  openPopup(profileEditPopup);
   profileNameEditField.value = profileName.textContent;
   profileInfoEditField.value = profileInfo.textContent;
+  openPopup(profileEditPopup);
 });
 
 //Функция отправления заполненной формы редактирования профиля
@@ -120,7 +120,6 @@ const newCardSubmitFormHandler = (evt) => {
   addCard(newCard);
   closePopup(newCardPopup);
   newCardSubmitForm.reset();
-  enableValidation(validationConfig);
   newCardSubmitButton.classList.remove("popup__submit-button_active");
 };
 
