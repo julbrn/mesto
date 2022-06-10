@@ -100,6 +100,7 @@ const addCard = (card) => {
 //Функция увеличения фото карточки
 const photoZoomHandler = (image) => {
   zoomedImage.src = image.link;
+  zoomedImage.alt = image.name;
   imageCaption.textContent = image.name;
   openPopup(imageZoomPopup);
 };
