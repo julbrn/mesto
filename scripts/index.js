@@ -1,3 +1,7 @@
+import {initialCards, validationConfig} from './constants.js';
+import FormValidator from './formValidator.js';
+/*import Card from './card.js';*/
+
 //Переменные для попапа редактирования профиля
 const profileEditPopup = document.querySelector(".popup_type_edit-profile");
 const profileEditButton = document.querySelector(".profile__edit-button");
@@ -148,3 +152,10 @@ const handleEscPress = (evt) => {
     closePopup(popupOpened);
   }
 };
+
+//Экземпляры класса FormValidator
+const editProfileFormValidator = new FormValidator(validationConfig, profileEditPopup);
+const newCardFormValidator = new FormValidator(validationConfig, newCardPopup);
+
+newCardFormValidator.enableValidation();
+editProfileFormValidator.enableValidation();
