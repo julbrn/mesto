@@ -1,4 +1,8 @@
-import { photoZoomHandler } from "./index.js";
+import {openPopup} from "../utils/utils.js";
+
+const imageZoomPopup = document.querySelector(".popup_type_zoom-image");
+const zoomedImage = imageZoomPopup.querySelector(".popup__image");
+const imageCaption = imageZoomPopup.querySelector(".popup__caption");
 
 export default class Card {
   constructor(data, cardTemplateSelector) {
@@ -36,9 +40,7 @@ export default class Card {
   _setEventListeners = () => {
     this._likeButton.addEventListener("click", this._likeButtonHandler);
     this._deleteButton.addEventListener("click", this._deleteButtonHandler);
-    this._cardPhoto.addEventListener("click", () => {
-      photoZoomHandler(this._name, this._link);
-    });
+    this._cardPhoto.addEventListener("click", this._photoZoomHandler);
   }
 
   //Функция постановки и снятия лайка
@@ -49,6 +51,13 @@ export default class Card {
   //Функция удаления карточки
   _deleteButtonHandler = () => {
     this._card.remove();
+    this._element = null;
 };
 
+  _photoZoomHandler = () => {
+    zoomedImage.src = this._link;
+    zoomedImage.alt = this._name;
+    imageCaption.textContent = this._name;
+    openPopup(imageZoomPopup);
+};
 }

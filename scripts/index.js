@@ -1,6 +1,7 @@
 import Card from './card.js';
-import {initialCards, validationConfig} from './constants.js';
+import {initialCards, validationConfig} from '../utils/constants.js';
 import FormValidator from './formValidator.js';
+import {openPopup, closePopup} from "../utils/utils.js";
 
 //Переменные для попапа редактирования профиля
 const profileEditPopup = document.querySelector(".popup_type_edit-profile");
@@ -18,8 +19,6 @@ const profileEditForm = profileEditPopup.querySelector(".popup__form");
 
 //Переменные для попапа увеличения фотографии
 const imageZoomPopup = document.querySelector(".popup_type_zoom-image");
-const zoomedImage = imageZoomPopup.querySelector(".popup__image");
-const imageCaption = imageZoomPopup.querySelector(".popup__caption");
 const zoomedImageCloseButton = imageZoomPopup.querySelector(".popup__close");
 
 //Переменные для попапа создания новой карточки
@@ -31,18 +30,6 @@ const newCardCreateButton = document.querySelector(".profile__add-button");
 const newCardCloseButton = newCardPopup.querySelector(".popup__close");
 const newCardSubmitForm = newCardPopup.querySelector(".popup__form");
 const newCardSubmitButton = newCardPopup.querySelector(".popup__submit-button");
-
-//Функции открытия попапов
-function openPopup(popupObject) {
-  popupObject.classList.add("popup_opened");
-  document.addEventListener("keydown", handleEscPress);
-}
-
-//Функции закрытия попапов
-function closePopup(popupObject) {
-  popupObject.classList.remove("popup_opened");
-  document.removeEventListener("keydown", handleEscPress);
-}
 
 //Передача данных из профиля в поля попапа
 profileEditButton.addEventListener("click", function () {
@@ -78,14 +65,6 @@ function addOldCard (cardListWrapper, card) {
   cardListWrapper.append(card);
 };
 
-//Функция увеличения фото карточки
-export function photoZoomHandler(name, link)  {
-  zoomedImage.src = link;
-  zoomedImage.alt = name;
-  imageCaption.textContent = name;
-  openPopup(imageZoomPopup);
-};
-
 //Отображение фотографий их массива
 initialCards.forEach(item => {
   addOldCard(cardListWrapper, renderCard(item));
@@ -100,7 +79,6 @@ const newCardSubmitFormHandler = (evt) => {
   addNewCard(cardListWrapper, renderCard(newCard));
   closePopup(newCardPopup);
   newCardSubmitForm.reset();
-  newCardSubmitButton.classList.remove("popup__submit-button_active");
 };
 
 //Слушатели для попапов
@@ -120,14 +98,6 @@ windowWithPopup.forEach((popup) => {
     }
   });
 });
-
-//Закрытие попапов по нажатию на Esc
-const handleEscPress = (evt) => {
-  if (evt.key === "Escape") {
-    const popupOpened = document.querySelector(".popup_opened");
-    closePopup(popupOpened);
-  }
-};
 
 //Экземпляры класса FormValidator
 const editProfileFormValidator = new FormValidator(validationConfig, profileEditPopup);
