@@ -1,10 +1,9 @@
-import { photoZoomHandler } from "./index.js";
-
 export default class Card {
-  constructor(data, cardTemplateSelector) {
+  constructor(data, cardTemplateSelector, photoZoomHandler) {
     this._name = data.name;
     this._link = data.link;
     this._cardTemplateSelector = cardTemplateSelector;
+    this._photoZoomHandler = photoZoomHandler;
   }
 
 //Возвращение шаблона карточки (DOM)
@@ -37,7 +36,7 @@ export default class Card {
     this._likeButton.addEventListener("click", this._likeButtonHandler);
     this._deleteButton.addEventListener("click", this._deleteButtonHandler);
     this._cardPhoto.addEventListener("click", () => {
-      photoZoomHandler(this._name, this._link);
+      this._photoZoomHandler(this._link, this._name);
     });
   }
 
@@ -49,6 +48,7 @@ export default class Card {
   //Функция удаления карточки
   _deleteButtonHandler = () => {
     this._card.remove();
+    this._card = null;
 };
 
 }

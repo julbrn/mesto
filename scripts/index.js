@@ -65,7 +65,7 @@ profileCloseButton.addEventListener("click", () =>
 profileEditForm.addEventListener("submit", profileEditFormHandler);
 
 function renderCard(data) {
-  const cardInstance = new Card(data, ".card-template");
+  const cardInstance = new Card(data, ".card-template", photoZoomHandler);
   const card = cardInstance.generateCard();
   return card;
 };
@@ -79,7 +79,7 @@ function addOldCard (cardListWrapper, card) {
 };
 
 //Функция увеличения фото карточки
-export function photoZoomHandler(name, link)  {
+const photoZoomHandler = (link, name) => {
   zoomedImage.src = link;
   zoomedImage.alt = name;
   imageCaption.textContent = name;
