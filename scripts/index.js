@@ -1,6 +1,6 @@
+import Card from './card.js';
 import {initialCards, validationConfig} from './constants.js';
 import FormValidator from './formValidator.js';
-/*import Card from './card.js';*/
 
 //Переменные для попапа редактирования профиля
 const profileEditPopup = document.querySelector(".popup_type_edit-profile");
@@ -31,7 +31,6 @@ const newCardCreateButton = document.querySelector(".profile__add-button");
 const newCardCloseButton = newCardPopup.querySelector(".popup__close");
 const newCardSubmitForm = newCardPopup.querySelector(".popup__form");
 const newCardSubmitButton = newCardPopup.querySelector(".popup__submit-button");
-const cardTemplate = document.querySelector(".card-template").content;
 
 //Функции открытия попапов
 function openPopup(popupObject) {
@@ -65,69 +64,46 @@ profileCloseButton.addEventListener("click", () =>
 );
 profileEditForm.addEventListener("submit", profileEditFormHandler);
 
-//Функция постановки и снятия лайка
-const likeButtonHandler = (evt) => {
-  evt.target.classList.toggle("card__like-button_active");
-};
-
-//Функция удаления карточки
-const deleteButtonHandler = (evt) => {
-  evt.target.closest(".card").remove();
-};
-
-//Создание карточки, слушатели на кнопки
-const createCard = (cardData) => {
-  const card = cardTemplate.querySelector(".card").cloneNode(true);
-  const cardTitle = card.querySelector(".card__title");
-  const cardPhoto = card.querySelector(".card__photo");
-  const deleteButton = card.querySelector(".card__delete-button");
-  const likeButton = card.querySelector(".card__like-button");
-  likeButton.addEventListener("click", likeButtonHandler);
-  deleteButton.addEventListener("click", deleteButtonHandler);
-  cardPhoto.src = cardData.link;
-  cardPhoto.alt = cardData.name;
-  cardTitle.textContent = cardData.name;
-  cardPhoto.addEventListener("click", () => {
-    photoZoomHandler(cardData);
-  });
+function renderCard(data) {
+  const cardInstance = new Card(data, ".card-template");
+  const card = cardInstance.generateCard();
   return card;
 };
 
-const renderCard = (card) => {
-  cardListWrapper.append(card);
-};
-
-const addCard = (card) => {
+function addNewCard (cardListWrapper, card) {
   cardListWrapper.prepend(card);
 };
 
+function addOldCard (cardListWrapper, card) {
+  cardListWrapper.append(card);
+};
+
 //Функция увеличения фото карточки
-const photoZoomHandler = (image) => {
-  zoomedImage.src = image.link;
-  zoomedImage.alt = image.name;
-  imageCaption.textContent = image.name;
+export function photoZoomHandler(name, link)  {
+  zoomedImage.src = link;
+  zoomedImage.alt = name;
+  imageCaption.textContent = name;
   openPopup(imageZoomPopup);
 };
 
 //Отображение фотографий их массива
-initialCards.forEach(function (item) {
-  const oldCard = createCard(item);
-  renderCard(oldCard);
+initialCards.forEach(item => {
+  addOldCard(cardListWrapper, renderCard(item));
 });
 
 //Добавление новой карточки
 const newCardSubmitFormHandler = (evt) => {
   evt.preventDefault();
-  const newCard = createCard({
-    name: newCardTitle.value,
-    link: newCardLink.value,
-  });
-  addCard(newCard);
+  const newCard = {};
+  newCard.name = newCardTitle.value;
+  newCard.link = newCardLink.value;
+  addNewCard(cardListWrapper, renderCard(newCard));
   closePopup(newCardPopup);
   newCardSubmitForm.reset();
   newCardSubmitButton.classList.remove("popup__submit-button_active");
 };
 
+//Слушатели для попапов
 newCardCreateButton.addEventListener("click", () => openPopup(newCardPopup));
 newCardCloseButton.addEventListener("click", () => closePopup(newCardPopup));
 zoomedImageCloseButton.addEventListener("click", () =>
@@ -145,7 +121,7 @@ windowWithPopup.forEach((popup) => {
   });
 });
 
-//Закрытие попаов по нажатию на Esc
+//Закрытие попапов по нажатию на Esc
 const handleEscPress = (evt) => {
   if (evt.key === "Escape") {
     const popupOpened = document.querySelector(".popup_opened");
