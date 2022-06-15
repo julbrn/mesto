@@ -100,11 +100,13 @@ const newCardSubmitFormHandler = (evt) => {
   addNewCard(cardListWrapper, renderCard(newCard));
   closePopup(newCardPopup);
   newCardSubmitForm.reset();
-  newCardSubmitButton.classList.remove("popup__submit-button_active");
 };
 
 //Слушатели для попапов
-newCardCreateButton.addEventListener("click", () => openPopup(newCardPopup));
+newCardCreateButton.addEventListener("click", () => {
+  newCardFormValidator.disableSubmitButton();
+  openPopup(newCardPopup);
+});
 newCardCloseButton.addEventListener("click", () => closePopup(newCardPopup));
 zoomedImageCloseButton.addEventListener("click", () =>
   closePopup(imageZoomPopup)
@@ -135,3 +137,4 @@ const newCardFormValidator = new FormValidator(validationConfig, newCardPopup);
 
 newCardFormValidator.enableValidation();
 editProfileFormValidator.enableValidation();
+
