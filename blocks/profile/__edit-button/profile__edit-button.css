@@ -22,6 +22,12 @@
   transition: opacity .7s ease;
 }
 
+.profile__edit-button:focus {
+  opacity: .6;
+  transition: all .7s ease;
+  transform: scale(1.1);
+}
+
 @media screen and (max-width: 650px) {
   .profile__edit-button {
     width: 18px;
