@@ -1,8 +1,8 @@
-import Card from './card.js';
-import {initialCards, validationConfig} from './constants.js';
-import FormValidator from './formValidator.js';
+import Card from "./Card.js";
+import { initialCards, validationConfig } from "./Constants.js";
+import FormValidator from "./FormValidator.js";
 
-//Переменные для попапа редактирования профиля
+/**Переменные для попапа редактирования профиля*/
 const profileEditPopup = document.querySelector(".popup_type_edit-profile");
 const profileEditButton = document.querySelector(".profile__edit-button");
 const profileCloseButton = profileEditPopup.querySelector(".popup__close");
@@ -16,13 +16,13 @@ const profileInfoEditField = profileEditPopup.querySelector(
 );
 const profileEditForm = profileEditPopup.querySelector(".popup__form");
 
-//Переменные для попапа увеличения фотографии
+/**Переменные для попапа увеличения фотографии*/
 const imageZoomPopup = document.querySelector(".popup_type_zoom-image");
 const zoomedImage = imageZoomPopup.querySelector(".popup__image");
 const imageCaption = imageZoomPopup.querySelector(".popup__caption");
 const zoomedImageCloseButton = imageZoomPopup.querySelector(".popup__close");
 
-//Переменные для попапа создания новой карточки
+/**Переменные для попапа создания новой карточки*/
 const cardListWrapper = document.querySelector(".elements__cards");
 const newCardPopup = document.querySelector(".popup_type_add-card");
 const newCardTitle = newCardPopup.querySelector(".popup__input_type_name");
@@ -32,26 +32,26 @@ const newCardCloseButton = newCardPopup.querySelector(".popup__close");
 const newCardSubmitForm = newCardPopup.querySelector(".popup__form");
 const newCardSubmitButton = newCardPopup.querySelector(".popup__submit-button");
 
-//Функции открытия попапов
+/**Функции открытия попапов*/
 function openPopup(popupObject) {
   popupObject.classList.add("popup_opened");
   document.addEventListener("keydown", handleEscPress);
 }
 
-//Функции закрытия попапов
+/**Функции закрытия попапов*/
 function closePopup(popupObject) {
   popupObject.classList.remove("popup_opened");
   document.removeEventListener("keydown", handleEscPress);
 }
 
-//Передача данных из профиля в поля попапа
+/**Передача данных из профиля в поля попапа*/
 profileEditButton.addEventListener("click", function () {
   profileNameEditField.value = profileName.textContent;
   profileInfoEditField.value = profileInfo.textContent;
   openPopup(profileEditPopup);
 });
 
-//Функция отправления заполненной формы редактирования профиля
+/**Функция отправления заполненной формы редактирования профиля*/
 const profileEditFormHandler = (evt) => {
   evt.preventDefault();
   profileName.textContent = profileNameEditField.value;
@@ -68,17 +68,17 @@ function renderCard(data) {
   const cardInstance = new Card(data, ".card-template", photoZoomHandler);
   const card = cardInstance.generateCard();
   return card;
-};
+}
 
-function addNewCard (cardListWrapper, card) {
+function addNewCard(cardListWrapper, card) {
   cardListWrapper.prepend(card);
-};
+}
 
-function addOldCard (cardListWrapper, card) {
+function addOldCard(cardListWrapper, card) {
   cardListWrapper.append(card);
-};
+}
 
-//Функция увеличения фото карточки
+/**Функция увеличения фото карточки*/
 const photoZoomHandler = (link, name) => {
   zoomedImage.src = link;
   zoomedImage.alt = name;
@@ -86,12 +86,12 @@ const photoZoomHandler = (link, name) => {
   openPopup(imageZoomPopup);
 };
 
-//Отображение фотографий их массива
-initialCards.forEach(item => {
+/**Отображение фотографий их массива*/
+initialCards.forEach((item) => {
   addOldCard(cardListWrapper, renderCard(item));
 });
 
-//Добавление новой карточки
+/**Добавление новой карточки*/
 const newCardSubmitFormHandler = (evt) => {
   evt.preventDefault();
   const newCard = {};
@@ -102,7 +102,7 @@ const newCardSubmitFormHandler = (evt) => {
   newCardSubmitForm.reset();
 };
 
-//Слушатели для попапов
+/**Слушатели для попапов*/
 newCardCreateButton.addEventListener("click", () => {
   newCardFormValidator.disableSubmitButton();
   openPopup(newCardPopup);
@@ -113,7 +113,7 @@ zoomedImageCloseButton.addEventListener("click", () =>
 );
 newCardSubmitForm.addEventListener("submit", newCardSubmitFormHandler);
 
-//Закрытие попапов по клику на оверлей
+/**Закрытие попапов по клику на оверлей*/
 const windowWithPopup = document.querySelectorAll(".popup");
 windowWithPopup.forEach((popup) => {
   popup.addEventListener("mousedown", function (evt) {
@@ -123,7 +123,7 @@ windowWithPopup.forEach((popup) => {
   });
 });
 
-//Закрытие попапов по нажатию на Esc
+/**Закрытие попапов по нажатию на Esc*/
 const handleEscPress = (evt) => {
   if (evt.key === "Escape") {
     const popupOpened = document.querySelector(".popup_opened");
@@ -131,10 +131,12 @@ const handleEscPress = (evt) => {
   }
 };
 
-//Экземпляры класса FormValidator
-const editProfileFormValidator = new FormValidator(validationConfig, profileEditPopup);
+/**Экземпляры класса FormValidator*/
+const editProfileFormValidator = new FormValidator(
+  validationConfig,
+  profileEditPopup
+);
 const newCardFormValidator = new FormValidator(validationConfig, newCardPopup);
 
 newCardFormValidator.enableValidation();
 editProfileFormValidator.enableValidation();
-
