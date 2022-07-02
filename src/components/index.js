@@ -1,4 +1,5 @@
 import Card from "./Card.js";
+import Section from "./Section.js";
 import { initialCards, validationConfig } from "./Constants.js";
 import FormValidator from "./FormValidator.js";
 
@@ -32,6 +33,25 @@ const newCardCloseButton = newCardPopup.querySelector(".popup__close");
 const newCardSubmitForm = newCardPopup.querySelector(".popup__form");
 const newCardSubmitButton = newCardPopup.querySelector(".popup__submit-button");
 
+/**Функция увеличения фото карточки*/
+const photoZoomHandler = (link, name) => {
+  zoomedImage.src = link;
+  zoomedImage.alt = name;
+  imageCaption.textContent = name;
+  openPopup(imageZoomPopup);
+};
+
+/** Отображение карточек*/
+const initialCardList = new Section({
+  items: initialCards.reverse(),
+  renderer: (data) => {
+  initialCardList.addItem(createCard(data));
+},
+  }, '.elements__cards'
+)
+
+initialCardList.renderItems()
+
 /**Функции открытия попапов*/
 function openPopup(popupObject) {
   popupObject.classList.add("popup_opened");
@@ -64,12 +84,8 @@ profileCloseButton.addEventListener("click", () =>
 );
 profileEditForm.addEventListener("submit", profileEditFormHandler);
 
-function renderCard(data) {
-  const cardInstance = new Card(data, ".card-template", photoZoomHandler);
-  const card = cardInstance.generateCard();
-  return card;
-}
 
+/*
 function addNewCard(cardListWrapper, card) {
   cardListWrapper.prepend(card);
 }
@@ -77,32 +93,25 @@ function addNewCard(cardListWrapper, card) {
 function addOldCard(cardListWrapper, card) {
   cardListWrapper.append(card);
 }
-
-/**Функция увеличения фото карточки*/
-const photoZoomHandler = (link, name) => {
-  zoomedImage.src = link;
-  zoomedImage.alt = name;
-  imageCaption.textContent = name;
-  openPopup(imageZoomPopup);
-};
-
-/**Отображение фотографий их массива*/
+*/
+/**Отображение фотографий их массива*//*
 initialCards.forEach((item) => {
-  addOldCard(cardListWrapper, renderCard(item));
-});
+  addOldCard(cardListWrapper, createCard(item));
+});*/
 
 /**Добавление новой карточки*/
-const newCardSubmitFormHandler = (evt) => {
+/*const newCardSubmitFormHandler = (evt) => {
   evt.preventDefault();
   const newCard = {};
   newCard.name = newCardTitle.value;
   newCard.link = newCardLink.value;
-  addNewCard(cardListWrapper, renderCard(newCard));
+  addNewCard(cardListWrapper, createCard(newCard));
   closePopup(newCardPopup);
   newCardSubmitForm.reset();
-};
+};*/
 
 /**Слушатели для попапов*/
+/*
 newCardCreateButton.addEventListener("click", () => {
   newCardFormValidator.disableSubmitButton();
   openPopup(newCardPopup);
@@ -111,7 +120,12 @@ newCardCloseButton.addEventListener("click", () => closePopup(newCardPopup));
 zoomedImageCloseButton.addEventListener("click", () =>
   closePopup(imageZoomPopup)
 );
-newCardSubmitForm.addEventListener("submit", newCardSubmitFormHandler);
+newCardSubmitForm.addEventListener("submit", newCardSubmitFormHandler);*/
+
+function createCard(data) {
+  const cardInstance = new Card(data, ".card-template", photoZoomHandler);
+  return cardInstance.generateCard();
+}
 
 /**Закрытие попапов по клику на оверлей*/
 const windowWithPopup = document.querySelectorAll(".popup");
