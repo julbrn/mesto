@@ -32,3 +32,16 @@ export const validationConfig = {
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__input-error_active",
 };
+
+/**Переменные для попапа редактирования профиля*/
+export const editPopup = document.querySelector(".popup_type_edit-profile");
+export const profileEditSubmitForm = editPopup.querySelector(".popup__form");
+export const profileEditButton = document.querySelector(".profile__edit-button");
+export const inputUserName = editPopup.querySelector('.popup__input_type_name');
+export const inputUserInfo = editPopup.querySelector('.popup__input_type_info');
+
+
+/**Переменные для попапа создания новой карточки*/
+export const addPopup = document.querySelector(".popup_type_add-card");
+export const newCardSubmitForm = addPopup.querySelector(".popup__form");
+export const addImageButton = document.querySelector(".profile__add-button");

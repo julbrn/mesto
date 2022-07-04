@@ -1,9 +1,9 @@
 export default class Card {
-  constructor(data, cardTemplateSelector, photoZoomHandler) {
+  constructor({data, handleCardClick}, cardTemplateSelector) {
     this._name = data.name;
     this._link = data.link;
     this._cardTemplateSelector = cardTemplateSelector;
-    this._photoZoomHandler = photoZoomHandler;
+    this._handleCardClick = handleCardClick;
   }
 
   /**Возвращение шаблона карточки (DOM)*/
@@ -35,7 +35,7 @@ export default class Card {
     this._likeButton.addEventListener("click", this._likeButtonHandler);
     this._deleteButton.addEventListener("click", this._deleteButtonHandler);
     this._cardPhoto.addEventListener("click", () => {
-      this._photoZoomHandler(this._link, this._name);
+      this._handleCardClick(this._link, this._name);
     });
   };
 

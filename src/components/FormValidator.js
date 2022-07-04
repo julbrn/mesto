@@ -7,8 +7,7 @@ export default class FormValidator {
       (this._errorClass = config.errorClass),
       (this._form = form);
     this._buttonElement = this._form.querySelector(
-      `.${this._submitButtonSelector}`
-    );
+      `.${this._submitButtonSelector}`);
   }
 
   _showInputError(inputElement, errorMessage) {
@@ -42,7 +41,8 @@ export default class FormValidator {
 
   _toggleButtonState(inputList) {
     if (this._hasInvalidInput(inputList)) {
-      this.disableSubmitButton();
+      this._buttonElement.classList.remove(this._activeButtonClass);
+      this._buttonElement.disabled = true;
     } else {
       this._buttonElement.classList.add(this._activeButtonClass);
       this._buttonElement.disabled = false;
@@ -61,8 +61,14 @@ export default class FormValidator {
     });
   }
 
-  disableSubmitButton() {
-    this._buttonElement.classList.remove(this._activeButtonClass);
-    this._buttonElement.disabled = true;
+  /**Убирает ошибки при новом открытии формы*/
+  setDefaultInputState() {
+    const inputList = Array.from(
+      this._form.querySelectorAll(`.${this._inputSelector}`)
+    );
+    inputList.forEach((input) => {
+      this._checkInputValidity(input);
+      this._hideInputError(input);
+    });
   }
 }
