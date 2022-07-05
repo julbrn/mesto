@@ -15,7 +15,7 @@ import {
 } from "./Constants.js";
 import FormValidator from "./FormValidator.js";
 
-/** Создает новую секцию в списке карточек*/
+/** Создает новую секцию для карочки*/
 const initialCardList = new Section({
   items: initialCards.reverse(),
   renderer: (data) => {
@@ -27,13 +27,21 @@ const initialCardList = new Section({
 initialCardList.renderItems()
 
 /** Экземпляр профиля пользователя*/
-const userInfo = new UserInfo ('.profile__title', '.profile__subtitle');
+const userInfo = new UserInfo(
+  {
+    userNameSelector: ".profile__title",
+    aboutUserSelector: ".profile__subtitle",
+  }
+);
 
 /** Экземпляр формы редактирования профиля */
 const profileEditPopup = new PopupWithForm('.popup_type_edit-profile', {
-  formSubmitHandler: (inputData) => {
+  formSubmitHandler: () => {
+    userInfo.setUserInfo({
+      name:  inputUserName.value,
+      info: inputUserInfo.value
+    });
     profileEditPopup.close();
-    userInfo.setUserInfo(inputData);
   }
 });
 
@@ -50,33 +58,6 @@ const newCardPopup = new PopupWithForm(
   });
 
 newCardPopup.setEventListeners();
-
-/**Передача данных из профиля в поля попапа*/
-/*profileEditButton.addEventListener("click", function () {
-  profileNameEditField.value = profileName.textContent;
-  profileInfoEditField.value = profileInfo.textContent;
-  openPopup(profileEditPopup);
-});*/
-
-/**Функция отправления заполненной формы редактирования профиля*/
-/*const profileEditFormHandler = (evt) => {
-  evt.preventDefault();
-  profileName.textContent = profileNameEditField.value;
-  profileInfo.textContent = profileInfoEditField.value;
-  closePopup(profileEditPopup);
-};
-
-/**Слушатели для попапов*/
-/*
-newCardCreateButton.addEventListener("click", () => {
-  newCardFormValidator.disableSubmitButton();
-  openPopup(newCardPopup);
-});
-newCardCloseButton.addEventListener("click", () => closePopup(newCardPopup));
-zoomedImageCloseButton.addEventListener("click", () =>
-  closePopup(imageZoomPopup)
-);
-newCardSubmitForm.addEventListener("submit", newCardSubmitFormHandler);*/
 
 /** Создаёт экземпляр попапа с увеличением изображения */
 const imageZoomPopup = new PopupWithImage('.popup_type_zoom-image');
@@ -100,6 +81,7 @@ const newCardFormValidator = new FormValidator(validationConfig, newCardSubmitFo
 newCardFormValidator.enableValidation();
 editProfileFormValidator.enableValidation();
 
+/**слушатель для кнопки редактирования профиля*/
 profileEditButton.addEventListener('click', () => {
   const userValues = userInfo.getUserInfo();
   inputUserName.value = userValues.name;
@@ -107,7 +89,7 @@ profileEditButton.addEventListener('click', () => {
   editProfileFormValidator.setDefaultInputState(profileEditPopup);
   profileEditPopup.open();
 });
-
+/**слушатель для кнопки добавления новой карточки*/
 addImageButton.addEventListener('click', () => {
   newCardPopup.open();
 });
