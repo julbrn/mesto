@@ -1,8 +1,9 @@
-import Card from "./Card.js";
-import Section from "./Section.js";
-import PopupWithForm from "./PopupWithForm.js";
-import PopupWithImage from "./PopupWithImage.js";
-import UserInfo from "./UserInfo.js";
+import './index.css';
+import Card from "../components/Card.js";
+import Section from "../components/Section.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import UserInfo from "../components/UserInfo.js";
 import {
   addImageButton,
   initialCards,
@@ -12,8 +13,8 @@ import {
   validationConfig,
   inputUserName,
   inputUserInfo
-} from "./Constants.js";
-import FormValidator from "./FormValidator.js";
+} from "../utils/Constants.js";
+import FormValidator from "../components/FormValidator.js";
 
 /** Создает новую секцию для карочки*/
 const initialCardList = new Section({
@@ -91,6 +92,7 @@ profileEditButton.addEventListener('click', () => {
 });
 /**слушатель для кнопки добавления новой карточки*/
 addImageButton.addEventListener('click', () => {
+  newCardFormValidator.setDefaultInputState(newCardPopup);
   newCardPopup.open();
 });
 

@@ -70,5 +70,7 @@ export default class FormValidator {
       this._checkInputValidity(input);
       this._hideInputError(input);
     });
+    this._buttonElement.disabled = true;
+    this._buttonElement.classList.remove(this._activeButtonClass);
   }
 }
