@@ -8,6 +8,9 @@ export default class FormValidator {
       (this._form = form);
     this._buttonElement = this._form.querySelector(
       `.${this._submitButtonSelector}`);
+    this._inputList = Array.from(
+      this._form.querySelectorAll(`.${this._inputSelector}`)
+    )
   }
 
   _showInputError(inputElement, errorMessage) {
@@ -48,25 +51,24 @@ export default class FormValidator {
       this._buttonElement.disabled = false;
     }
   }
-
-  enableValidation() {
-    const inputList = Array.from(
-      this._form.querySelectorAll(`.${this._inputSelector}`)
-    );
-    inputList.forEach((inputElement) => {
+/** Вешает слушатели на инпуты */
+  _setInputEvtListeners() {
+    this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState(inputList);
+        this._toggleButtonState(this._inputList);
       });
     });
   }
 
+  /** Функция включения валидации */
+  enableValidation() {
+    this._setInputEvtListeners(this._form);
+  }
+
   /**Убирает ошибки при новом открытии формы*/
   setDefaultInputState() {
-    const inputList = Array.from(
-      this._form.querySelectorAll(`.${this._inputSelector}`)
-    );
-    inputList.forEach((input) => {
+    this._inputList.forEach((input) => {
       this._checkInputValidity(input);
       this._hideInputError(input);
     });
