@@ -9,13 +9,13 @@ export default class UserInfo {
   getUserInfo() {
     this._userInfo = {
       name: this._userName.textContent,
-      info: this._userAbout.textContent
+      about: this._userAbout.textContent
     }
     return this._userInfo;
   };
   /** принимает новые данные пользователя и добавляет их на страницу*/
-  setUserInfo(userInfo){
-    this._userName.textContent = userInfo.name;
-    this._userAbout.textContent = userInfo.info;
+  setUserInfo(data){
+    this._userName.textContent = data.profileName;
+    this._userAbout.textContent = data.profileInfo;
   };
 }

@@ -30,21 +30,17 @@ initialCardList.renderItems()
 /** Экземпляр профиля пользователя*/
 const userInfo = new UserInfo(
   {
-    userNameSelector: ".profile__title",
-    aboutUserSelector: ".profile__subtitle",
+    userNameSelector: '.profile__title',
+    aboutUserSelector: '.profile__subtitle',
   }
 );
 
 /** Экземпляр формы редактирования профиля */
 const profileEditPopup = new PopupWithForm('.popup_type_edit-profile', {
-  formSubmitHandler: () => {
-    userInfo.setUserInfo({
-      name:  inputUserName.value,
-      info: inputUserInfo.value
-    });
+  formSubmitHandler: (inputValues) => {
+    userInfo.setUserInfo(inputValues);
     profileEditPopup.close();
-  }
-});
+  }});
 
 profileEditPopup.setEventListeners();
 
@@ -86,7 +82,7 @@ editProfileFormValidator.enableValidation();
 profileEditButton.addEventListener('click', () => {
   const userValues = userInfo.getUserInfo();
   inputUserName.value = userValues.name;
-  inputUserInfo.value = userValues.info;
+  inputUserInfo.value = userValues.about;
   editProfileFormValidator.setDefaultInputState(profileEditPopup);
   profileEditPopup.open();
 });
