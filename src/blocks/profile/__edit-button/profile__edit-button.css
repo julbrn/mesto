@@ -5,14 +5,14 @@
   background-image: url('../../../images/profile/Vector.svg');
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: fill;
+  /*background-size: fill;*/
   background-color: transparent;
   border: 1px solid #fff;
   grid-area: edit-button;
   align-self: end;
   justify-self: start;
-  margin-bottom: 9px;
-  display: inline-block;
+  padding: 0;
+  margin: 0 0 9px 0;
   outline: none;
 }
 
@@ -33,7 +33,6 @@
     width: 18px;
     height: 18px;
     place-self: center start;
-    background-size: 7.5px 7.5px;
     margin-left: 10px;
     margin-bottom: 0;
   }
