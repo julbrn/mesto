@@ -1,23 +1,23 @@
 .profile {
   width: 100%;
   max-width: 880px;
-  margin: 0 auto;
+  margin: 40px auto 0;
   display: grid;
   grid-template-columns: 120px auto max-content 1fr max-content;
   grid-template-areas:
-        "avatar title edit-button . add-button"
-        "avatar subtitle . . add-button";
+        "avatar-container title edit-button . add-button"
+        "avatar-container subtitle . . add-button";
   column-gap: 18px;
-  padding: 40px 0 50px;
+  padding: 0 0 50px;
   box-sizing: border-box;
 }
 
 @media screen and (max-width: 650px) {
   .profile {
-    padding: 42px 0 36px;
+    margin-top: 42px;
     grid-template-columns: auto auto;
     grid-template-areas:
-    "avatar avatar"
+    "avatar-container avatar-container"
     "title edit-button"
     "subtitle subtitle"
     "add-button add-button";

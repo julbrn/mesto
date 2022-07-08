@@ -4,11 +4,7 @@
   height: 120px;
   grid-area: avatar;
   object-fit: cover;
+  border-color: transparent;
 }
 
-@media screen and (max-width: 650px) {
-  .profile__avatar {
-    margin-bottom: 26px;
-    justify-self: center;
-  }
-}
+
