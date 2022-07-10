@@ -5,6 +5,8 @@
   grid-area: photo;
   border-radius: 10px 10px 0 0;
   object-fit: cover;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
 }
 
 .card__photo:hover {

@@ -1,9 +1,12 @@
 export default class Card {
-  constructor({data, handleCardClick}, cardTemplateSelector) {
+  constructor({data, handleCardClick}, cardTemplateSelector, api, userId) {
     this._name = data.name;
     this._link = data.link;
     this._cardTemplateSelector = cardTemplateSelector;
     this._handleCardClick = handleCardClick;
+    this._id = data._id;
+    this._ownerId = data.owner._id;
+    this._userId = userId;
   }
 
   /**Возвращение шаблона карточки (DOM)*/
@@ -26,7 +29,9 @@ export default class Card {
     this._cardPhoto.src = this._link;
     this._cardPhoto.alt = this._name;
     this._cardTitle.textContent = this._name;
-
+    if (!(this._ownerId === this._userId)) {
+      this._deleteButton.style.display = 'none';
+    }
     return this._card;
   };
 

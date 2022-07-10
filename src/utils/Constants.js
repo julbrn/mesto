@@ -1,4 +1,4 @@
-export const initialCards = [
+/*export const initialCards = [
   {
     name: 'Pear',
     link: 'https://images.unsplash.com/photo-1421167418805-7f170a738eb4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
@@ -23,7 +23,7 @@ export const initialCards = [
     name: 'Autumn vibes',
     link: 'https://images.unsplash.com/photo-1634738442108-de3e34983c5c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
   }
-];
+];*/
 
 export const validationConfig = {
   inputSelector: "popup__input",
@@ -45,3 +45,11 @@ export const inputUserInfo = editPopup.querySelector('.popup__input_type_info');
 export const addPopup = document.querySelector(".popup_type_add-card");
 export const newCardSubmitForm = addPopup.querySelector(".popup__form");
 export const addImageButton = document.querySelector(".profile__add-button");
+
+/**Переменные для попапа подтверждения удаления*/
+export const deleteCardPopup = document.querySelector(".popup_type_deletion-confirmation");
+export const deleteCardButton = deleteCardPopup.querySelector(".card__delete-button");
+
+/**Переменные для авторизации на сервере*/
+export const token = '1133b8bd-97d0-4ecb-ab73-7c32b64892f8';
+export const server = 'https://mesto.nomoreparties.co/v1/cohort-45';

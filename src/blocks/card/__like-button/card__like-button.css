@@ -19,10 +19,5 @@
   transition: opacity .7s ease;
 }
 
-.card__like-button:focus {
-  opacity: 50%;
-  transform: scale(1.1);
-  transition: all .7s ease;
-}
 
 
