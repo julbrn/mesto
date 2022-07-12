@@ -44,6 +44,7 @@
 .profile__edit-avatar-button{background-color:rgba(0,0,0,.8);background-image:url(images/edit-avatar.a086f758840ae814ecde.svg);background-position:50%;background-repeat:no-repeat;background-size:auto;border:none;border-radius:50%;box-shadow:0 0 0 5px #000;height:120px;left:0;margin:0;opacity:0;outline:none;padding:0;position:absolute;top:0;width:120px;z-index:2}.profile__edit-avatar-button:hover{cursor:pointer;opacity:1;transition:opacity .7s linear}
 .profile__avatar-container{border-color:transparent;grid-area:avatar-container;height:120px;position:relative;width:120px}@media screen and (max-width:650px){.profile__avatar-container{justify-self:center;margin-bottom:26px}}
 .popup__container_type_deletion-confirmation{height:181px;min-height:181px}
+.popup__container_type_edit-avatar{height:272px;min-height:272px}
 
 
 /*# sourceMappingURL=main.css.map*/
