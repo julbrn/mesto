@@ -22,11 +22,11 @@
 .footer__copyright{color:#545454;font-size:18px;font-weight:400;line-height:1.22;margin-top:66px;padding:0}@media screen and (max-width:950px){.footer__copyright{font-size:14px;margin-top:48px}}
 .popup{align-items:center;background-color:rgba(0,0,0,.5);border:1px solid #000;bottom:0;box-shadow:0 4px 4px rgba(0,0,0,.25);box-sizing:border-box;display:flex;justify-content:center;left:0;opacity:0;position:fixed;right:0;top:0;transition:opacity .4s ease-in,visibility .4s ease-in;visibility:hidden}
 .popup__container{background-color:#fff;border-radius:10px;box-sizing:border-box;height:330px;min-height:330px;padding:34px 36px 36px;position:relative;width:430px;z-index:5}@media screen and (max-width:580px){.popup__container{height:322px;padding:25px 22px;width:282px}}
-.popup__title{font-size:24px;font-weight:900;line-height:23px;margin:0;padding-bottom:52px}@media screen and (max-width:580px){.popup__title{font-size:18px;padding-bottom:75px}}
+.popup__title{font-size:24px;font-weight:900;line-height:23px;margin:0;padding-bottom:38px}@media screen and (max-width:580px){.popup__title{font-size:18px}}
 .popup__close{background-color:transparent;background-image:url(images/Close_Icon.9ab71323863cd2eb7985.svg);background-position:50%;background-repeat:no-repeat;background-size:100%;border:none;height:32px;margin:0;padding:0;position:absolute;right:-40px;top:-40px;width:32px}.popup__close:hover{cursor:pointer;opacity:.6;transition:opacity .7s ease}@media screen and (max-width:580px){.popup__close{background-image:url(images/Close_Icon_small.b793e07c3f4c19e26c11.svg);height:20px;right:0;top:-36px;width:20px}}
-.popup__form{box-sizing:border-box;margin:0;padding:0;width:100%}
+.popup__form{box-sizing:border-box;display:flex;flex-direction:column;height:100%;justify-content:space-between;margin:0;padding:0;width:100%}
 .popup__input{border:none;border-bottom:1px solid rgba(0,0,0,.2);box-sizing:border-box;color:#000;font-size:14px;font-weight:400;line-height:1.21;margin:0;outline:none;overflow:hidden;padding:1px 0 13px;text-overflow:ellipsis;white-space:nowrap;width:100%}.popup__input:focus{outline:1px solid #b5b6b7}
-.popup__submit-button{background-color:#fff;border:1px solid #000;border-radius:2px;box-sizing:border-box;color:#000;font-size:18px;font-weight:400;height:50px;line-height:1.22;margin:4px 0 0;opacity:.2;outline:none;padding:0;pointer-events:none;width:100%}@media screen and (max-width:580px){.popup__submit-button{font-size:14px;height:46px;line-height:1.21;margin-top:2px}}
+.popup__submit-button{background-color:#fff;border:1px solid #000;border-radius:2px;box-sizing:border-box;color:#000;font-size:18px;font-weight:400;height:50px;line-height:1.22;margin:0;opacity:.2;outline:none;padding:0;pointer-events:none;width:100%}@media screen and (max-width:580px){.popup__submit-button{font-size:14px;height:46px;line-height:1.21}}
 .popup__submit-button_active{background-color:#000;border:none;color:#fff;opacity:1;pointer-events:all;transition:.6s ease}.popup__submit-button_active:hover{background-color:rgba(0,0,0,.8);cursor:pointer}
 
 
@@ -40,7 +40,10 @@
 .popup__input_type_error{border-bottom-color:red}
 .popup__input-error{display:block;margin:0;min-height:30px;opacity:0;padding:5px 0 0}
 .popup__input-error_active{color:red;font-size:12px;font-weight:400;line-height:14.52px;opacity:1}
-.popup__fieldset{border:none;margin:0;outline:none;padding:0}
+.popup__fieldset{border:none;display:flex;flex-direction:column;height:100%;justify-content:space-between;margin:0;outline:none;padding:0}
 .profile__edit-avatar-button{background-color:rgba(0,0,0,.8);background-image:url(images/edit-avatar.a086f758840ae814ecde.svg);background-position:50%;background-repeat:no-repeat;background-size:auto;border:none;border-radius:50%;box-shadow:0 0 0 5px #000;height:120px;left:0;margin:0;opacity:0;outline:none;padding:0;position:absolute;top:0;width:120px;z-index:2}.profile__edit-avatar-button:hover{cursor:pointer;opacity:1;transition:opacity .7s linear}
 .profile__avatar-container{border-color:transparent;grid-area:avatar-container;height:120px;position:relative;width:120px}@media screen and (max-width:650px){.profile__avatar-container{justify-self:center;margin-bottom:26px}}
+.popup__container_type_deletion-confirmation{height:181px;min-height:181px}
 
+
+/*# sourceMappingURL=main.css.map*/
