@@ -10,6 +10,11 @@
 <img src="./src/images/readme_pic.png" alt="Страница с открытым попапом добавления новой карточки"/>
 
 
+
+<img src="./src/images/screenshot2.jpg" alt="Страница"/>
+
+
+
 ### Функционал
 
 ---

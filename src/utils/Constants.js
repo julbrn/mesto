@@ -53,3 +53,6 @@ export const deleteCardButton = deleteCardPopup.querySelector(".card__delete-but
 /**Переменные для авторизации на сервере*/
 export const token = '1133b8bd-97d0-4ecb-ab73-7c32b64892f8';
 export const server = 'https://mesto.nomoreparties.co/v1/cohort-45';
+
+/**Переменные для редактирования аватара*/
+export const avatarEditButton = document.querySelector('.profile__edit-avatar-button');

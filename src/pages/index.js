@@ -16,7 +16,8 @@ import {
   inputUserInfo,
   token,
   server,
-  deleteCardPopup
+  deleteCardPopup,
+  avatarEditButton
 } from "../utils/Constants.js";
 import FormValidator from "../components/FormValidator.js";
 //import PopupWithConfirmation from "../components/PopupWithConfirmation";
@@ -97,6 +98,15 @@ const newCardPopup = new PopupWithForm(
 }});
 
 newCardPopup.setEventListeners();
+
+/** Экземпляр формы изменения аватара */
+const avatarEditPopup = new PopupWithForm('.popup_type_edit-avatar', {formSubmitHandler: () => {
+    profileEditPopup.loading('Сохранение...');
+
+  }});
+
+avatarEditPopup.setEventListeners();
+avatarEditButton.addEventListener('click', () => {avatarEditPopup.open()})
 
 const deletionConfirmationPopup = new PopupWithConfirmation(
   '.popup_type_deletion-confirmation',
