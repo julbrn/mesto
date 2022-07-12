@@ -28,25 +28,6 @@ const api = new Api({
   }
 });
 
-let userId;
-
-Promise.all([api.getUserInfo(), api.getInitialCards()])
-  .then(([data, cards]) => {
-    userId = data._id;
-    userInfo.setUserInfo(data);
-    initialCardList.renderItems(cards);
-  })
-  .catch((err) => console.log(err))
-  .finally(() => {})
-
-/** Создает новую секцию для карочки*/
-const initialCardList = new Section({
-  renderer: (data) => {
-  initialCardList.addItem(createCard(data));
-},
-  }, '.elements__cards'
-)
-
 /** Экземпляр профиля пользователя*/
 const userInfo = new UserInfo(
   {
@@ -56,10 +37,30 @@ const userInfo = new UserInfo(
   }
 );
 
+let userId;
+
+Promise.all([api.downloadUserInfo(), api.downloadInitialCards()])
+  .then(([data, cards]) => {
+    userId = data._id;
+    userInfo.setUserInfo(data);
+    initialCardList.renderItems(cards);
+  })
+  .catch((err) => console.log(err))
+  //.finally(() => {})
+
+/** Создает новую секцию для карочки*/
+const initialCardList = new Section({
+  renderer: (data) => {
+  initialCardList.addItem(createCard(data));
+},
+  }, '.elements__cards'
+)
+
+
 /** Экземпляр формы редактирования профиля */
-const profileEditPopup = new PopupWithForm('.popup_type_edit-profile', (inputValues) => {
-  profileEditPopup.loading('Сохранение...')
-    api.setUserInfo(inputValues)
+const profileEditPopup = new PopupWithForm('.popup_type_edit-profile', {formSubmitHandler: (inputValues) => {
+  profileEditPopup.loading('Сохранение...');
+    api.uploadUserInfo(inputValues)
     .then((data) => {
       userInfo.setUserInfo(data);
       profileEditPopup.close();
@@ -70,27 +71,28 @@ const profileEditPopup = new PopupWithForm('.popup_type_edit-profile', (inputVal
     .finally(() => {
       profileEditPopup.loading(false);
     })
-});
+}});
 
 profileEditPopup.setEventListeners();
 
 /** Создаёт экземпляр формы добавления карточки */
 const newCardPopup = new PopupWithForm(
-  '.popup_type_add-card', (inputData) => {
-    newCardPopup.loading('Сохранение...');
-    api.postCard(inputData)
-      .then((data) => {
-        initialCardList.addItem(createCard(data));
-        newCardPopup.close();
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        newCardPopup.loading(false);
-      })
-     newCardPopup.close();
-  });
+  '.popup_type_add-card', {formSubmitHandler: (inputData) =>
+{
+  newCardPopup.loading('Сохранение...');
+  api.uploadCard(inputData)
+    .then((data) => {
+      initialCardList.addItem(createCard(data));
+      newCardPopup.close();
+    })
+    .catch((error) => {
+      console.error(error);
+    })
+    .finally(() => {
+      newCardPopup.loading(false);
+    })
+  newCardPopup.close();
+}});
 
 newCardPopup.setEventListeners();
 /*

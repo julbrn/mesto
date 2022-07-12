@@ -11,7 +11,7 @@ export default class Api {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  getInitialCards() {
+  downloadInitialCards() {
     return fetch(`${this._serverUrl}/cards`, {
       method: 'GET',
       headers: this._headers,
@@ -19,7 +19,7 @@ export default class Api {
       .then(this._checkServerResponse);
   }
 
-  postCard(data) {
+  uploadCard(data) {
     return fetch(`${this._serverUrl}/cards`, {
       method: 'POST',
       headers: this._headers,
@@ -31,7 +31,7 @@ export default class Api {
       .then(this._checkServerResponse);
   }
 
-  deleteCard(id) {
+  deleteCardfromServer(id) {
     return fetch(`${this._serverUrl}/cards/${id}`, {
       method: 'DELETE',
       headers: this._headers
@@ -39,7 +39,7 @@ export default class Api {
       .then(this._checkServerResponse);
   }
 
-  likeCard(id) {
+  sendCardLike(id) {
     return fetch(`${this._serverUrl}/cards/${id}/likes`, {
       method: 'PUT',
       headers: this._headers,
@@ -47,7 +47,7 @@ export default class Api {
       .then(this._checkServerResponse);
   }
 
-  dislikeCard(id) {
+  deleteCardLike(id) {
     return fetch(`${this._serverUrl}/cards/likes/${id}`, {
       method: 'DELETE',
       headers: this._headers,
@@ -55,7 +55,7 @@ export default class Api {
       .then(this._checkServerResponse)
   }
 
-  getUserInfo() {
+  downloadUserInfo() {
     return fetch(`${this._serverUrl}/users/me`, {
       method: 'GET',
       headers: this._headers
@@ -63,13 +63,13 @@ export default class Api {
       .then(this._checkServerResponse);
   }
 
-  setUserInfo(userData) {
+  uploadUserInfo(userData) {
     return fetch(`${this._serverUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        name: userData.name,
-        about: userData.about
+        name: userData.profileName,
+        about: userData.profileInfo
       })
     })
       .then(this._checkServerResponse);
