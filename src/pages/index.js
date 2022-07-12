@@ -5,6 +5,7 @@ import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import {
   addImageButton,
   newCardSubmitForm,
@@ -14,7 +15,8 @@ import {
   inputUserName,
   inputUserInfo,
   token,
-  server
+  server,
+  deleteCardPopup
 } from "../utils/Constants.js";
 import FormValidator from "../components/FormValidator.js";
 //import PopupWithConfirmation from "../components/PopupWithConfirmation";
@@ -95,16 +97,16 @@ const newCardPopup = new PopupWithForm(
 }});
 
 newCardPopup.setEventListeners();
-/*
-const confirmationPopup = new PopupWithConfirmation(
+
+const deletionConfirmationPopup = new PopupWithConfirmation(
   '.popup_type_deletion-confirmation',
   {
     formSubmitHandler: () => {
-      confirmationPopup.close();
+      deletionConfirmationPopup.close();
     }
   });
 
-confirmationPopup.setEventListeners();*/
+deletionConfirmationPopup.setEventListeners();
 
 /** Создаёт экземпляр попапа с увеличением изображения */
 const imageZoomPopup = new PopupWithImage('.popup_type_zoom-image');
@@ -114,7 +116,8 @@ imageZoomPopup.setEventListeners();
 function createCard(data) {
   const cardInstance = new Card({
     data: data,
-    handleCardClick:  () => {imageZoomPopup.open(data)}
+    handleCardClick:  () => {imageZoomPopup.open(data)},
+    deleteButtonHandler: () => {deletionConfirmationPopup.open()}
   }, ".card-template", api, userId);
   return cardInstance.generateCard();
 }

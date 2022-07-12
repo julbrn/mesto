@@ -1,9 +1,8 @@
-/*import Popup from "./Popup.js";
+import Popup from "./Popup.js";
 export default class PopupWithConfirmation extends Popup {
-  constructor(popupSelector, {deletionHandler}) {
+  constructor(popupSelector) {
     super(popupSelector);
-    this._deletionHandler = deletionHandler;
   }
 
 }
-*/
+

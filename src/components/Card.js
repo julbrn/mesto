@@ -1,5 +1,5 @@
 export default class Card {
-  constructor({data, handleCardClick}, cardTemplateSelector, api, userId) {
+  constructor({data, handleCardClick, deleteButtonHandler}, cardTemplateSelector, api, userId) {
     this._name = data.name;
     this._link = data.link;
     this._cardTemplateSelector = cardTemplateSelector;
@@ -7,6 +7,7 @@ export default class Card {
     this._id = data._id;
     this._ownerId = data.owner._id;
     this._userId = userId;
+    this._deleteButtonHandler = deleteButtonHandler;
   }
 
   /**Возвращение шаблона карточки (DOM)*/
@@ -48,10 +49,11 @@ export default class Card {
   _likeButtonHandler = () => {
     this._likeButton.classList.toggle("card__like-button_active");
   };
-
+}
   /**Функция удаления карточки*/
-  _deleteButtonHandler = () => {
+  /*_deleteButtonHandler = () => {
     this._card.remove();
     this._card = null;
   };
 }
+*/
