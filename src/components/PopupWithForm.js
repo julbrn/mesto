@@ -8,16 +8,16 @@ export default class PopupWithForm extends Popup {
     this._popupButton = this._popupForm.querySelector('.popup__submit-button');
     this._buttonText = this._popupButton.textContent;
   }
-  /**собирает данные всех полей формы*/
+  /**собирает данные всех полей формы  и убирает пробелы*/
   _getInputValues() {
     this._newValues = {};
     this._inputList.forEach((inputItem) => {
-      this._newValues[inputItem.name] = inputItem.value;
+      this._newValues[inputItem.name] = inputItem.value.trim();
     })
     return this._newValues;
   };
 
-  /**не только добавляет обработчик клика иконке закрытия, но и добавляет обработчик сабмита формы*/
+  /** добавляет обработчик сабмита формы*/
   setEventListeners() {
    super.setEventListeners();
     this._popupForm.addEventListener('submit', (evt) => {

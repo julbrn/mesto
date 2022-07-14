@@ -45,3 +45,4 @@
 @import url(../blocks/profile/__avatar-container/profile____avatar-container.css);
 @import url(../blocks/popup/__container/_type/popup__container_type_deletion-confirmation.css);
 @import url(../blocks/popup/__container/_type/popup__container_type_edit-avatar.css);
+@import url(../blocks/popup/__input/_type/popup__input_type_avatarUrl.css);
