@@ -20,7 +20,7 @@
           <button class="profile__edit-avatar-button" aria-label="Редактировать аватар" type="button"></button>
           <img
             class="profile__avatar"
-            src=""
+            src="<%=require('./images/profile/emptyprofile.jpg')%>"
             alt="Аватар"
           />
         </div>
@@ -162,13 +162,18 @@
     <template class="card-template">
       <li class="card">
         <img src="#" class="card__photo" alt="#" />
-        <h2 class="card__title"></h2>
-        <button
-          type="button"
-          class="card__like-button"
-          aria-label="like"
-        ></button>
-        <button class="card__delete-button" aria-label="delete"></button>
+        <div class = "card__info-container">
+          <h2 class="card__title"></h2>
+          <div class = "card__like-container">
+            <button
+              type="button"
+              class="card__like-button"
+              aria-label="like"
+            ></button>
+            <p class = "card__like-counter">2</p>
+          </div>
+          <button class="card__delete-button" aria-label="delete"></button>
+        </div>
       </li>
     </template>
   </body>

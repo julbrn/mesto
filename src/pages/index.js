@@ -146,7 +146,7 @@ function createCard(data) {
     data: data,
     handleCardClick:  () => {imageZoomPopup.open(data);
       console.log(data);},
-    deleteButtonHandler: () => {
+    handleDeleteButton: () => {
       deletionConfirmationPopup.submitHandler(() => {
       deletionConfirmationPopup.loading(true);
       api. deleteCardfromServer(data._id)
