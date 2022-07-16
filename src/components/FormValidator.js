@@ -69,10 +69,8 @@ export default class FormValidator {
   /**Убирает ошибки при новом открытии формы*/
   setDefaultInputState() {
     this._inputList.forEach((input) => {
-      this._checkInputValidity(input);
       this._hideInputError(input);
     });
-    this._buttonElement.disabled = true;
-    this._buttonElement.classList.remove(this._activeButtonClass);
+    this._toggleButtonState(this._inputList);
   }
 }

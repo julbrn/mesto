@@ -26,6 +26,7 @@
 ];*/
 
 export const validationConfig = {
+  formSelector: ".popup__form",
   inputSelector: "popup__input",
   submitButtonSelector: "popup__submit-button",
   activeButtonClass: "popup__submit-button_active",
@@ -37,9 +38,6 @@ export const validationConfig = {
 export const editPopup = document.querySelector(".popup_type_edit-profile");
 export const profileEditSubmitForm = editPopup.querySelector(".popup__form");
 export const profileEditButton = document.querySelector(".profile__edit-button");
-export const inputUserName = editPopup.querySelector('.popup__input_type_name');
-export const inputUserInfo = editPopup.querySelector('.popup__input_type_info');
-
 
 /**Переменные для попапа создания новой карточки*/
 export const addPopup = document.querySelector(".popup_type_add-card");

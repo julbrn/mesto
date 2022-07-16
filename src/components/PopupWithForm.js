@@ -17,6 +17,12 @@ export default class PopupWithForm extends Popup {
     return this._newValues;
   };
 
+  setInputValues(data) {
+    this._inputList.forEach((input) => {
+      input.value = data[input.name];
+    });
+  }
+
   /** добавляет обработчик сабмита формы*/
   setEventListeners() {
    super.setEventListeners();
@@ -32,9 +38,9 @@ export default class PopupWithForm extends Popup {
     this._popupForm.reset();
   };
 
-  loading(isLoading) {
+  loading(isLoading, loadingText='Сохранение...') {
     if (isLoading) {
-      this._popupButton.textContent = 'Сохранение...';
+      this._popupButton.textContent = loadingText;
     } else {
       this._popupButton.textContent = this._buttonText;
     }

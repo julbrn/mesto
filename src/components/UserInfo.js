@@ -4,23 +4,22 @@ export default class UserInfo {
     this._userName = document.querySelector(userNameSelector);
     this._userAbout = document.querySelector(aboutUserSelector);
     this._userAvatar = document.querySelector(avatarSelector);
+    this._userInfo = {};
   }
   /**возвращает объект с данными пользователя. Получает информацию о пользователе из разметки
    * Этот метод пригодится, когда данные пользователя нужно будет подставить в форму при открытии.*/
   getUserInfo() {
-    this._userInfo = {
-      name: this._userName.textContent,
-      about: this._userAbout.textContent
-    }
+    this._userInfo['profileName'] = this._userName.textContent;
+    this._userInfo['profileInfo'] = this._userAbout.textContent;
     return this._userInfo;
   };
   /** принимает новые данные пользователя и добавляет их на страницу*/
-  setUserInfo(data){
-    this._userName.textContent = data.name;
-    this._userAbout.textContent = data.about;
-    this.setAvatar(data);
+  setUserInfo({name, about, avatar, _id}){
+    this._userName.textContent = name;
+    this._userAbout.textContent = about;
+    this.setAvatar(avatar);
   };
-  setAvatar(data) {
-    this._userAvatar.src = data.avatar;
+  setAvatar(avatar) {
+    this._userAvatar.src = avatar;
   }
 }

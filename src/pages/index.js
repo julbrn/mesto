@@ -12,8 +12,6 @@ import {
   profileEditButton,
   profileEditSubmitForm,
   validationConfig,
-  inputUserName,
-  inputUserInfo,
   token,
   server,
   avatarEditButton,
@@ -60,7 +58,7 @@ const initialCardList = new Section({
 
 /** Экземпляр формы редактирования профиля */
 const profileEditPopup = new PopupWithForm('.popup_type_edit-profile', {formSubmitHandler: (inputValues) => {
-  profileEditPopup.loading('Сохранение...');
+  profileEditPopup.loading(true);
     api.uploadUserInfo(inputValues)
     .then((data) => {
       userInfo.setUserInfo(data);
@@ -82,7 +80,7 @@ profileEditPopup.setEventListeners();
 const newCardPopup = new PopupWithForm(
   '.popup_type_add-card', {formSubmitHandler: (inputData) =>
 {
-  newCardPopup.loading('Сохранение...');
+  newCardPopup.loading(true);
   api.uploadCard(inputData)
     .then((data) => {
       initialCardList.addItem(createCard(data));
@@ -94,7 +92,6 @@ const newCardPopup = new PopupWithForm(
     .finally(() => {
       newCardPopup.loading(false);
     })
-  newCardPopup.close();
 }});
 
 /** вешает на попап добавления новой карточки обработчик сабмита формы (данные ввода попадают в
@@ -103,7 +100,7 @@ newCardPopup.setEventListeners();
 
 /** Экземпляр формы изменения аватара */
 const avatarEditPopup = new PopupWithForm('.popup_type_edit-avatar', {formSubmitHandler: (data) => {
-    avatarEditPopup.loading('Сохранение...');
+    avatarEditPopup.loading(true);
     api.editAvatar(data)
       .then ((data) => {
         userInfo.setAvatar(data);
@@ -146,7 +143,7 @@ function createCard(data) {
     handleCardClick:  () => {imageZoomPopup.open(data);
       console.log(data);},
     handleDeleteButton: () => {
-      deletionConfirmationPopup.submitHandler(() => {
+      deletionConfirmationPopup.setSubmitHandler(() => {
       deletionConfirmationPopup.loading(true);
       api. deleteCardfromServer(data._id)
         .then(() => {
@@ -185,36 +182,37 @@ function createCard(data) {
   return cardInstance.generateCard();
 }
 
-
 /**Экземпляры класса FormValidator*/
-const editProfileFormValidator = new FormValidator(
-  validationConfig,
-  profileEditSubmitForm
-);
-const newCardFormValidator = new FormValidator(validationConfig, newCardSubmitForm);
-const editAvatarFormValidator = new FormValidator(
-  validationConfig,
-  avatarEditSubmitForm
-);
+const formValidators = {}
 
-newCardFormValidator.enableValidation();
-editProfileFormValidator.enableValidation();
-editAvatarFormValidator.enableValidation();
+// Включение валидации
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector))
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement)
+    // получаем данные из атрибута `name` у формы
+    const formName = formElement.getAttribute('name')
+    // вот тут в объект записываем под именем формы
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+
+enableValidation(validationConfig);
 
 /**слушатель для кнопки редактирования профиля*/
 profileEditButton.addEventListener('click', () => {
   const userValues = userInfo.getUserInfo();
-  inputUserName.value = userValues.name;
-  inputUserInfo.value = userValues.about;
-  editProfileFormValidator.setDefaultInputState(profileEditPopup);
+  profileEditPopup.setInputValues(userValues);
+  formValidators['profileEditForm'].setDefaultInputState();
   profileEditPopup.open();
 });
 /**слушатель для кнопки добавления новой карточки*/
 addImageButton.addEventListener('click', () => {
-  newCardFormValidator.setDefaultInputState(newCardPopup);
+  formValidators['newCardForm'].setDefaultInputState();
   newCardPopup.open();
 });
 
 avatarEditButton.addEventListener('click', () => {
-  editAvatarFormValidator.setDefaultInputState(avatarEditPopup);
+  formValidators['avatarEditForm'].setDefaultInputState();
   avatarEditPopup.open()});
