@@ -8,14 +8,11 @@ import UserInfo from "../components/UserInfo.js";
 import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import {
   addImageButton,
-  newCardSubmitForm,
   profileEditButton,
-  profileEditSubmitForm,
   validationConfig,
   token,
   server,
   avatarEditButton,
-  avatarEditSubmitForm
 } from "../utils/Constants.js";
 import FormValidator from "../components/FormValidator.js";
 
@@ -57,7 +54,7 @@ const initialCardList = new Section({
 )
 
 /** Экземпляр формы редактирования профиля */
-const profileEditPopup = new PopupWithForm('.popup_type_edit-profile', {formSubmitHandler: (inputValues) => {
+const profileEditPopup = new PopupWithForm('.popup_type_edit-profile', {setFormSubmitHandler: (inputValues) => {
   profileEditPopup.loading(true);
     api.uploadUserInfo(inputValues)
     .then((data) => {
@@ -78,7 +75,7 @@ profileEditPopup.setEventListeners();
 
 /** Экземпляр формы добавления карточки */
 const newCardPopup = new PopupWithForm(
-  '.popup_type_add-card', {formSubmitHandler: (inputData) =>
+  '.popup_type_add-card', {setFormSubmitHandler: (inputData) =>
 {
   newCardPopup.loading(true);
   api.uploadCard(inputData)
@@ -99,7 +96,7 @@ const newCardPopup = new PopupWithForm(
 newCardPopup.setEventListeners();
 
 /** Экземпляр формы изменения аватара */
-const avatarEditPopup = new PopupWithForm('.popup_type_edit-avatar', {formSubmitHandler: (data) => {
+const avatarEditPopup = new PopupWithForm('.popup_type_edit-avatar', {setFormSubmitHandler: (data) => {
     avatarEditPopup.loading(true);
     api.editAvatar(data)
       .then ((data) => {
@@ -123,7 +120,7 @@ avatarEditPopup.setEventListeners();
 const deletionConfirmationPopup = new PopupWithConfirmation(
   '.popup_type_deletion-confirmation',
   {
-    formSubmitHandler: () => {
+    setFormSubmitHandler: () => {
       deletionConfirmationPopup.close();
     }
   });
