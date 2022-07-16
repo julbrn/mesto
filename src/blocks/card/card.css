@@ -1,23 +1,17 @@
 .card {
-  background-color: #fff;
   box-sizing: border-box;
   border-radius: 10px;
   padding-bottom: 28px;
   width: 100%;
   min-height: 361px;
-  display: grid;
-  grid-template-columns: 1fr 49px;
-  grid-template-areas:
-  "photo photo"
-  "title like";
-  row-gap: 25px;
-  align-items: center;
-  justify-items: start;
+  display: flex;
+  flex-direction: column;
   border: none;
   outline: none;
   overflow: hidden;
   position: relative;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
+  background-color: transparent;
 }
 

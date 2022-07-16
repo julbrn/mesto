@@ -6,6 +6,7 @@ export default class PopupWithConfirmation extends Popup {
     this._popupButton = this._popupForm.querySelector('.popup__submit-button ');
     this._buttonText = this._popupButton.textContent;
   }
+
   submitHandler(action) {
     this._submitHandler = action;
   }
@@ -19,6 +20,7 @@ export default class PopupWithConfirmation extends Popup {
     super.setEventListeners();
   }
 
+  /**отображение процесса загрузки в тексте кнопок */
   loading(isLoading) {
     if (isLoading) {
       this._popupButton.textContent = 'Удаление...';

@@ -16,13 +16,10 @@ import {
   inputUserInfo,
   token,
   server,
-  deleteCardPopup,
-  avatarPopup,
   avatarEditButton,
   avatarEditSubmitForm
 } from "../utils/Constants.js";
 import FormValidator from "../components/FormValidator.js";
-//import PopupWithConfirmation from "../components/PopupWithConfirmation";
 
 /** Подключить API */
 const api = new Api({
@@ -52,7 +49,6 @@ Promise.all([api.downloadUserInfo(), api.downloadInitialCards()])
     initialCardList.renderItems(cards);
   })
   .catch((err) => console.log(err))
-  //.finally(() => {})
 
 /** Создает новую секцию для карочки*/
 const initialCardList = new Section({
@@ -61,7 +57,6 @@ const initialCardList = new Section({
 },
   }, '.elements__cards'
 )
-
 
 /** Экземпляр формы редактирования профиля */
 const profileEditPopup = new PopupWithForm('.popup_type_edit-profile', {formSubmitHandler: (inputValues) => {
@@ -101,6 +96,7 @@ const newCardPopup = new PopupWithForm(
     })
   newCardPopup.close();
 }});
+
 /** вешает на попап добавления новой карточки обработчик сабмита формы (данные ввода попадают в
  *  хэндлер) */
 newCardPopup.setEventListeners();
@@ -121,11 +117,12 @@ const avatarEditPopup = new PopupWithForm('.popup_type_edit-avatar', {formSubmit
       })
 
   }});
+
 /** вешает на попап редактирования аватара обработчик сабмита формы (данные ввода попадают в
  *  хэндлер) */
 avatarEditPopup.setEventListeners();
 
-
+/**экземпляр формы подтверждения удаления карточки*/
 const deletionConfirmationPopup = new PopupWithConfirmation(
   '.popup_type_deletion-confirmation',
   {
@@ -133,17 +130,19 @@ const deletionConfirmationPopup = new PopupWithConfirmation(
       deletionConfirmationPopup.close();
     }
   });
+
 /** вешает на попап подтверждения удаления карточки обработчик сабмита формы */
 deletionConfirmationPopup.setEventListeners();
 
-/** Создаёт экземпляр попапа с увеличением изображения */
+/**экземпляр попапа с увеличением изображения */
 const imageZoomPopup = new PopupWithImage('.popup_type_zoom-image');
 imageZoomPopup.setEventListeners();
 
-/**Создаёт экземпляры карточек */
+/**экземпляры карточек */
 function createCard(data) {
   const cardInstance = new Card({
     data: data,
+    userId: userId,
     handleCardClick:  () => {imageZoomPopup.open(data);
       console.log(data);},
     handleDeleteButton: () => {
@@ -161,10 +160,31 @@ function createCard(data) {
           deletionConfirmationPopup.loading(false);
         })
       });
-      deletionConfirmationPopup.open();}
-  }, ".card-template", api, userId);
+      deletionConfirmationPopup.open();},
+    likeCard: () => {
+      api.sendCardLike(data)
+        .then((data) => {
+          cardInstance.addLikeClass();
+          cardInstance.setLikesCount(data);
+        })
+        .catch((err => {
+          console.log(err);
+        }))
+    },
+    unlikeCard: () => {
+      api.deleteCardLike(data)
+        .then((data) => {
+          cardInstance.removeLikeClass();
+          cardInstance.setLikesCount(data);
+        })
+        .catch((err => {
+          console.log(err);
+        }))
+    }
+  }, ".card-template", userId);
   return cardInstance.generateCard();
 }
+
 
 /**Экземпляры класса FormValidator*/
 const editProfileFormValidator = new FormValidator(
@@ -198,8 +218,3 @@ addImageButton.addEventListener('click', () => {
 avatarEditButton.addEventListener('click', () => {
   editAvatarFormValidator.setDefaultInputState(avatarEditPopup);
   avatarEditPopup.open()});
-/*
-deleteCardButton.addEventListener('click', () => {
-  confirmationPopup.open();
-});
-*/

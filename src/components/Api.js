@@ -3,7 +3,7 @@ export default class Api {
     this._headers = headers;
     this._serverUrl = serverUrl;
   }
-
+  /**проверяем ответ сервера*/
   _checkServerResponse(res) {
     if (res.ok) {
       return res.json();
@@ -11,6 +11,7 @@ export default class Api {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
+  /**получаем карточки с сервера*/
   downloadInitialCards() {
     return fetch(`${this._serverUrl}/cards`, {
       method: 'GET',
@@ -19,6 +20,7 @@ export default class Api {
       .then(this._checkServerResponse);
   }
 
+  /** загружаем новую карточку*/
   uploadCard(data) {
     return fetch(`${this._serverUrl}/cards`, {
       method: 'POST',
@@ -31,6 +33,7 @@ export default class Api {
       .then(this._checkServerResponse);
   }
 
+  /** удаляем карточку*/
   deleteCardfromServer(id) {
     return fetch(`${this._serverUrl}/cards/${id}`, {
       method: 'DELETE',
@@ -39,22 +42,25 @@ export default class Api {
       .then(this._checkServerResponse);
   }
 
-  sendCardLike(id) {
-    return fetch(`${this._serverUrl}/cards/${id}/likes`, {
+  /** передаем лайк на сервер*/
+  sendCardLike(data) {
+    return fetch(`${this._serverUrl}/cards/${data._id}/likes`, {
       method: 'PUT',
       headers: this._headers,
     })
       .then(this._checkServerResponse);
   }
 
-  deleteCardLike(id) {
-    return fetch(`${this._serverUrl}/cards/likes/${id}`, {
+  /** убираем поставленный лайк с сервера*/
+  deleteCardLike(data) {
+    return fetch(`${this._serverUrl}/cards/likes/${data._id}`, {
       method: 'DELETE',
       headers: this._headers,
     })
       .then(this._checkServerResponse)
   }
 
+  /**загружаем информацию о юзере с сервера */
   downloadUserInfo() {
     return fetch(`${this._serverUrl}/users/me`, {
       method: 'GET',
@@ -63,6 +69,7 @@ export default class Api {
       .then(this._checkServerResponse);
   }
 
+  /**отправляем новую информацию о юзере на сервер */
   uploadUserInfo(userData) {
     return fetch(`${this._serverUrl}/users/me`, {
       method: 'PATCH',
@@ -75,6 +82,7 @@ export default class Api {
       .then(this._checkServerResponse);
   }
 
+  /**меняем аватарку */
   editAvatar(data) {
     return fetch (`${this._serverUrl}/users/me/avatar`, {
       method: 'PATCH',
