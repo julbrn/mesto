@@ -17,7 +17,6 @@ export default class PopupWithConfirmation extends Popup {
       evt.preventDefault();
       this._setSubmitHandler();
     });
-    super.setEventListeners();
   }
 
   /**отображение процесса загрузки в тексте кнопок */
